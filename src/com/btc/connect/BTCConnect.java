@@ -80,3 +80,4 @@ public class BTCConnect {
       return Base64.getEncoder().encodeToString(msg.getBytes(StandardCharsets.UTF_8));
     }
 }
+//https://github.com/ZJ-p007/BitcoinConnect.git
