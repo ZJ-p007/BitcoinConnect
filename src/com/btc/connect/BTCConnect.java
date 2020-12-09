@@ -18,10 +18,10 @@ import java.util.List;
 
 public class BTCConnect {
     //RPC服务的用户名,应该与比特币客户端节点的配置文件一致
-    private static final String RPCUSER = "user";
+//    private static final String RPCUSER = "user";
     //RPC服务中的用户密码,应该与比特币客户端节点的配置文件一致
-    private static final String RPCPASSWORD = "pwd";
-    private static final String RPCURL = "http://127.0.0.1:7001";
+ //   private static final String RPCPASSWORD = "pwd";
+  //  private static final String RPCURL = "http://127.0.0.1:7001";
     //maven：管理和构建项目的依赖和配置
     //依赖的配置:xml文件
     public static void main(String[] args) {
@@ -50,13 +50,13 @@ public class BTCConnect {
 
         //2.使用java网络通信进行rpc连接,发起一个post类型的请求把准备好json数据发送给rpc服务器
         DefaultHttpClient client = new DefaultHttpClient();
-        HttpPost post = new HttpPost(RPCURL);
+        HttpPost post = new HttpPost(Constants.RPCURL);
         //client执行一个post请求
         try {
             //设置请求头
             post.addHeader("Content-Type","application/json");
             post.addHeader("Encoding","UTF-8");
-            post.addHeader("Authorization","Basic " + base64Encode(RPCUSER + ":" + RPCPASSWORD));
+            post.addHeader("Authorization","Basic " + base64Encode(Constants.RPCUSER + ":" + Constants.RPCPASSWORD));
 
             //entity:实体
             StringEntity entity = new StringEntity(jsonRpcStr);
