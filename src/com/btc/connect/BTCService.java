@@ -1,5 +1,7 @@
 package com.btc.connect;
 
+import com.alibaba.fastjson.JSON;
+import com.btc.connect.entity.BlockChainInfo;
 import org.apache.http.HttpStatus;
 
 import java.util.HashMap;
@@ -30,6 +32,9 @@ public class BTCService {
       // map.put("Authorization", "Basic " + BcRPCUtils.base64Encode(Constants.RPCUSER + ":" + Constants.RPCPASSWORD));
        // map.put("Authorization", "Basic " + BcRPCUtils.base64Encode(RPCUSER + ":" + RPCUPASSWORD));
         Result result = BcRPCUtils.executePost(map, json);
+        if(result==null){
+            return null;
+        }
         if (result.getCode() == HttpStatus.SC_OK) {
             return result.getData().getResult();
         } else {
@@ -37,7 +42,6 @@ public class BTCService {
             return null;
         }
     }
-
 
     /**
      * 取当前节点同步到的所有区块数据的个数
@@ -52,18 +56,35 @@ public class BTCService {
         // map.put("Authorization", "Basic " + BcRPCUtils.base64Encode(Constants.RPCUSER + ":" + Constants.RPCPASSWORD));
         //map.put("Authorization", "Basic " + BcRPCUtils.base64Encode(RPCUSER + ":" + Constants.RPCUPASSWORD));
         Result result = BcRPCUtils.executePost(map, json);
+        if(result==null){
+            return -1;
+        }
         if (result.getCode() == HttpStatus.SC_OK) {
             String countStr = result.getData().getResult();
-            int count = Integer.parseInt(countStr);//将字符串转换成int类型
-            return count;
+            return Integer.parseInt(countStr);//将字符串转换成int类型
+
         } else {
             //System.out.println(result.getCode());
             return -1;//-1查询失败
         }
     }
 
-    public void getBlockChainInfo(){
+    /**
+     * 获取当前区块链信息
+     * 命令:getBlockChainInfo
+     * @return
+     */
+    public BlockChainInfo getBlockChainInfo(){
         String json = BcRPCUtils.prepareJSON("getblockchaininfo");
+        Result result = BcRPCUtils.executePost(map, json);
+        if(result==null){
+            return null;
+        }
+        if (result.getCode() == HttpStatus.SC_OK) {
+            String info = result.getData().getResult();
+            return JSON.parseObject(info,BlockChainInfo.class);
+        }
+        return null;
     }
 
 }

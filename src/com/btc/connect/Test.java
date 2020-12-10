@@ -1,6 +1,11 @@
 package com.btc.connect;
 
+import com.btc.connect.entity.Bip;
+import com.btc.connect.entity.BlockChainInfo;
+import com.btc.connect.entity.Reject;
+
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Test {
@@ -24,5 +29,19 @@ public class Test {
         //获取最新区块的哈希值
         String hash =  service.getBestBlockHsah();
         System.out.println("最新区块的哈希:"+hash);
+
+        //获取区块链节点信息
+        BlockChainInfo chainInfo = service.getBlockChainInfo();
+        if(chainInfo !=null){
+           String chainInfoChain = chainInfo.getChain();
+            System.out.println(chainInfoChain);
+            System.out.println(chainInfo.getDifficulty());
+            List<Bip> bipList = chainInfo.getSoftforks();
+            for(Bip bip:bipList){
+                System.out.println(bip.getId());
+                System.out.println(bip.getVersion());
+
+            }
+        }
     }
 }
