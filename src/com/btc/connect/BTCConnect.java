@@ -40,9 +40,11 @@ public class BTCConnect {
         object.put("id",System.currentTimeMillis() + "");//当前时间的毫秒数
         object.put("jsonrpc","2.0");//rpc服务协议版本
         //object.put("method","getblockchaininfo");
-        object.put("method","getnewaddress");
+        object.put("method","getblockhash");
+        int[] arr = new int[1];
+        arr[0] = 0;
         //object.put("Authorization","Basic" + base64Encode(RPCUSER + ":" + RPCPASSWORD));
-        //object.put("params","0");//调用命令时的传参数
+        object.put("params",arr);//调用命令时的传参数
         //Basic基础的
 
         String jsonRpcStr = object.toJSONString();
