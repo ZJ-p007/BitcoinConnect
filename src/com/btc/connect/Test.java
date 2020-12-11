@@ -1,9 +1,6 @@
 package com.btc.connect;
 
-import com.btc.connect.entity.Bip;
-import com.btc.connect.entity.BlockChainInfo;
-import com.btc.connect.entity.BlockData;
-import com.btc.connect.entity.Reject;
+import com.btc.connect.entity.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -58,8 +55,17 @@ public class Test {
         System.out.println("区块信息:" + data.getHash());
 
         //生成比特币的地址
-        String address = service.getNewAddress("0000", "legacy");
+        String address = service.getNewAddress("0000",ADDRESS_TYPE.LEGACY);
         System.out.println("生成的新地址:" + address);
+
+        //计算关于链中事务的总数和速率的统计信息参数:获取链
+        GetChainTxStats chainTxStats = service.getChainTxStats(0);
+        System.out.println("获取链:" + chainTxStats.getWindow_final_block_hash());
+
+        //获取指定哈希的区块头
+        GetBlockHeader getBlockHeader = service.getBlockHeader(hash0);
+        System.out.println("hash值:" + getBlockHeader.getHash());
+        System.out.println("mediantime是:" + getBlockHeader.getMediantime());
 
 
     }
