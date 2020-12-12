@@ -152,7 +152,7 @@ public class BTCService {
         }*/
         String type = Constants.getNewAddressTy(address_type);
         String json = BcRPCUtils.prepareJSON(Constants.GETNEWADDRESS, label, type);
-        System.out.println(json);
+        //System.out.println(json);
         Result result = BcRPCUtils.executePost(map, json);
         if (result == null) {
             return null;
