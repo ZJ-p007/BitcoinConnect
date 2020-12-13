@@ -2,9 +2,7 @@ package com.btc.connect;
 
 import com.btc.connect.entity.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Test {
    /* private static final String RPCUSER = "user";
@@ -70,6 +68,32 @@ public class Test {
         GetBlockHeader getBlockHeader = service.getBlockHeader(hash0);
         System.out.println("hash值:" + getBlockHeader.getHash());
         System.out.println("mediantime是:" + getBlockHeader.getMediantime());
+
+        //返回交易池信息
+        GetMemPoolInfo getMemPoolInfo = service.getMempoolInfo();
+        System.out.println(getMemPoolInfo.getMaxmempool());
+
+        //
+        ValiDateAddress valiDateAddress = service.valiDateAddress("3BksZVy652DWAzkJPWNKk4VhjHu3TaLGKo");
+        System.out.println(valiDateAddress.getAddress());
+
+        //
+        String dum = service.Dum("0");
+        System.out.println(dum);
+
+        //
+        GetWalletInfo getWalletInfo = service.getwalletInfo();
+        System.out.println(getWalletInfo.getWalletversion());
+
+        //
+        GetMiningInfo getMiningInfo  = service.getMiningInfo();
+        System.out.println(getMiningInfo.getChain());
+
+        //
+        String dum1 = service.dumpPrivatekey("35At62Jt7GqJWWGyyyZDRNKsN2EDaxyChR");
+        System.out.println(dum1);
+
+        //
 
 
     }
