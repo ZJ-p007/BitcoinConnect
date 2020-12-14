@@ -3,6 +3,7 @@ package com.btc.connect;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.btc.connect.entity.*;
+import com.sun.net.httpserver.Filter;
 import org.apache.http.HttpStatus;
 
 import java.util.HashMap;
@@ -197,7 +198,7 @@ public class BTCService {
 
     //返回交易池信息
     public GetMemPoolInfo getMempoolInfo() {
-        String json = BcRPCUtils.prepareJSON("getmempoolinfo");
+        String json = BcRPCUtils.prepareJSON(Constants.GETMEMPOOLINFO);
         Result result = BcRPCUtils.executePost(map, json);
         if (result == null) {
             return null;
@@ -225,7 +226,7 @@ public class BTCService {
     }*/
     //
     public ValiDateAddress valiDateAddress(String address){
-        String json =BcRPCUtils.prepareJSON("validateaddress",address);
+        String json =BcRPCUtils.prepareJSON(Constants.VALIDATEADDRESS,address);
         Result result =BcRPCUtils.executePost(map,json);
         if (result==null){
             return null;
@@ -238,8 +239,8 @@ public class BTCService {
     }
 
     //
-    public String Dum(String filename){
-        String json = BcRPCUtils.prepareJSON("dumpwallet",filename);
+    public String Dum(String file){
+        String json = BcRPCUtils.prepareJSON(Constants.DUMPWALLET,file);
         Result result = BcRPCUtils.executePost(map,json);
         if (result == null){
             return null;
@@ -253,7 +254,7 @@ public class BTCService {
 
     //
     public  GetWalletInfo getwalletInfo(){
-        String json =BcRPCUtils.prepareJSON("getwalletinfo");
+        String json =BcRPCUtils.prepareJSON(Constants.GETWALLETINFO);
         Result result = BcRPCUtils.executePost(map,json);
         if (result == null){
             return null;
@@ -268,7 +269,7 @@ public class BTCService {
 
     //
     public GetMiningInfo getMiningInfo(){
-        String json =BcRPCUtils.prepareJSON("getmininginfo");
+        String json =BcRPCUtils.prepareJSON(Constants.GETMININGINFO);
         Result result = BcRPCUtils.executePost(map,json);
         if(result == null){
             return null;
@@ -280,23 +281,31 @@ public class BTCService {
     }
 
     //
-    public String dumpPrivatekey(String address){
-        String json = BcRPCUtils.prepareJSON("dumpprivkey",address);
+    public String DumpPrivkey(String address){
+        String json =BcRPCUtils.prepareJSON(Constants.DUMPPRIVKEY,address);
+        Result result =BcRPCUtils.executePost(map,json);
+        if (result==null){
+            return null;
+        }
+        if (result.getCode()==HttpStatus.SC_OK){
+            return result.getData().getResult();
+
+        }
+        return null;
+    }
+
+    //
+    public String veriFyChain(){
+        String json = BcRPCUtils.prepareJSON("verifychain");
         Result result = BcRPCUtils.executePost(map,json);
         if (result == null){
             return null;
         }
         if (result.getCode()==HttpStatus.SC_OK){
-            String wall = result.getData().getResult();
             return result.getData().getResult();
         }
         return null;
-
     }
-
-    //
-
-
 
 
 }

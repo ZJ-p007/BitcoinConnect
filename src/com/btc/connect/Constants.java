@@ -60,6 +60,23 @@ public class Constants {
      */
     public static final String GETBLOCKHEADER = "getblockheader";
 
+    //
+    public static final String GETMEMPOOLINFO = "getmempoolinfo";
+
+    public static final String VALIDATEADDRESS = "validateaddress";
+
+    public static final String DUMPWALLET = "dumpwallet";
+
+    public static final String GETWALLETINFO = "getwalletinfo";
+
+    public static final String GETMININGINFO = "getmininginfo";
+
+    public static final String DUMPPRIVKEY = "dumpprivkey";
+
+
+
+
+
 
     /**
      * 用于根据枚举类型返回对应的比特币地址类型对应的字符串

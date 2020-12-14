@@ -53,9 +53,9 @@ public class Test {
         System.out.println("区块信息:" + data.getHash());
 
         //生成比特币的地址
-        String address0 = service.getNewAddress("0000",ADDRESS_TYPE.LEGACY);
-        String address1 = service.getNewAddress("1111",ADDRESS_TYPE.P2SH_SEGWIT);
-        String address2 = service.getNewAddress("2222",ADDRESS_TYPE.BECH32);
+        String address0 = service.getNewAddress("0000", ADDRESS_TYPE.LEGACY);
+        String address1 = service.getNewAddress("1111", ADDRESS_TYPE.P2SH_SEGWIT);
+        String address2 = service.getNewAddress("2222", ADDRESS_TYPE.BECH32);
         System.out.println("LEGACY生成的新地址:" + address0);
         System.out.println("P2SH_SEGWIT生成的新地址:" + address1);
         System.out.println("BECH32生成的新地址:" + address2);
@@ -78,22 +78,16 @@ public class Test {
         System.out.println(valiDateAddress.getAddress());
 
         //
-        String dum = service.Dum("0");
-        System.out.println(dum);
-
-        //
         GetWalletInfo getWalletInfo = service.getwalletInfo();
         System.out.println(getWalletInfo.getWalletversion());
 
         //
-        GetMiningInfo getMiningInfo  = service.getMiningInfo();
+        GetMiningInfo getMiningInfo = service.getMiningInfo();
         System.out.println(getMiningInfo.getChain());
 
-        //
-        String dum1 = service.dumpPrivatekey("35At62Jt7GqJWWGyyyZDRNKsN2EDaxyChR");
-        System.out.println(dum1);
-
-        //
+        //验证链
+        String chain = service.veriFyChain();
+        System.out.println(chain);
 
 
     }
